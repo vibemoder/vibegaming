@@ -1,0 +1,56 @@
+.arpg-selector {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.game-item {
+  position: relative;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.game-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted-foreground);
+  transition: color 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+}
+.game-item:hover .game-trigger {
+  color: var(--foreground);
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  gap: 40px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  min-width: 320px;
+}
+.dropdown-section h4 {
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+.dropdown-section ul li {
+  margin-bottom: 10px;
+}
+.dropdown-section ul li a {
+  color: var(--muted-foreground);
+  font-size: 14px;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.dropdown-section ul li a:hover {
+  color: var(--foreground);
+}

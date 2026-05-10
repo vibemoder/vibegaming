@@ -1,0 +1,11 @@
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon Part -->
+  <path d="M10 10L20 30L30 10" stroke="#f2bf43" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text Part -->
+  <text x="45" y="28" fill="white" style="font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">Vibe</text>
+  <text x="92" y="28" fill="#f2bf43" style="font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">Gaming</text>
+  
+  <!-- Modern accent line -->
+  <rect x="45" y="34" width="120" height="2" fill="#3f3966" opacity="0.5"/>
+</svg>

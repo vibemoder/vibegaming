@@ -1,0 +1,24 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import SEO from '../components/SEO.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentLocale = Astro.currentLocale || 'en';
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+	<head>
+		<SEO title={title} description={description} />
+		<ClientRouter />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

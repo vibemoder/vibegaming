@@ -1,0 +1,103 @@
+---
+const { game, title, date, excerpt, slug, image } = Astro.props;
+const gameDisplay = game.toUpperCase().replace('-', ' ');
+---
+
+<a href={`/${game}/news/${slug}`} class="news-card">
+  <div class="image-container">
+    <div class="game-badge">{gameDisplay}</div>
+    {image ? <img src={image} alt={title} /> : <div class="image-placeholder" />}
+  </div>
+  <div class="content">
+    <time datetime={date}>{date}</time>
+    <h3>{title}</h3>
+    <p>{excerpt}</p>
+    <span class="read-more">Read More →</span>
+  </div>
+</a>
+
+<style>
+  .news-card {
+    background: var(--vibe-purple-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--vibe-accent);
+  }
+
+  .image-container {
+    height: 180px;
+    position: relative;
+    background: var(--background);
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--background), var(--secondary));
+  }
+
+  .game-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--vibe-accent);
+    color: var(--vibe-purple);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    z-index: 1;
+  }
+
+  .content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  time {
+    font-size: 12px;
+    color: var(--vibe-text-muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 14px;
+    color: var(--vibe-text-muted);
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more {
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--vibe-accent);
+  }
+</style>

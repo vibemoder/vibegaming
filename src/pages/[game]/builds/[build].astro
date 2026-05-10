@@ -1,0 +1,264 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+
+export function getStaticPaths() {
+  return [
+    { 
+      params: { game: 'diablo-4', build: 'spiritborn' },
+      props: {
+        title: "S-Tier Spiritborn Quill Volley Build",
+        videoUrl: "https://www.youtube.com/embed/5-pUf28n7zM", // Example high-quality build video
+        overview: "The Spiritborn Quill Volley build is the undisputed king of Patch 2.0.2. Using the Rod of Kepeleke and Rebounding Aspect, this build achieves near-infinite resource loops and screen-clearing damage.",
+        spiritHall: { primary: "Gorilla", secondary: "Jaguar" },
+        gear: [
+          { slot: "Weapon", item: "Rod of Kepeleke", impact: "Cornerstone unique; guarantees crits." },
+          { slot: "Helm", item: "Harmony of Ebewaka", impact: "Massive damage multiplier." },
+          { slot: "Ring", item: "Ring of the Midnight Sun", impact: "Infinite Vigor loop." },
+          { slot: "Gloves", item: "Rebounding Aspect", impact: "Exploding feathers double total hits." }
+        ]
+      }
+    },
+    { 
+      params: { game: 'poe-2', build: 'warrior' },
+      props: {
+        title: "Path of Exile 2: Brutal Warrior Build",
+        videoUrl: "https://www.youtube.com/embed/RkS4I6xP9gY", // Official PoE 2 Warrior gameplay/build
+        overview: "The Warrior in PoE 2 focuses on heavy impact and crowd control. This build utilizes the new 'Rolling Slam' and 'Armor Break' mechanics to shatter enemy defenses.",
+        spiritHall: null,
+        gear: [
+          { slot: "Weapon", item: "Colossal Mace", impact: "Highest base physical damage." },
+          { slot: "Chest", item: "Plate Mail", impact: "High armor for the new physical mitigation." },
+          { slot: "Amulet", item: "Strength Talisman", impact: "Scales all physical skill damage." }
+        ]
+      }
+    }
+  ];
+}
+
+const { game, build } = Astro.params;
+const { title, videoUrl, overview, gear, spiritHall } = Astro.props;
+
+const displayGame = game.split('-').map(s => s.toUpperCase()).join(' ');
+---
+
+<Layout title={`${title} | VibeGaming`}>
+  <Header />
+  <main class="container">
+    <div class="build-page">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> / <span>{displayGame}</span> / <span>Builds</span>
+      </nav>
+
+      <section class="video-funnel">
+        <h1>{title}</h1>
+        <div class="video-container">
+          <iframe 
+            src={videoUrl} 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="main-info">
+          <div class="card overview">
+            <h2>Build Overview</h2>
+            <p>{overview}</p>
+          </div>
+
+          {spiritHall && (
+            <div class="card spirit-hall">
+              <h2>Spirit Hall Setup</h2>
+              <div class="spirit-flex">
+                <div class="spirit-item">
+                  <strong>Primary</strong>
+                  <span>{spiritHall.primary}</span>
+                </div>
+                <div class="spirit-item">
+                  <strong>Secondary</strong>
+                  <span>{spiritHall.secondary}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div class="card gear-table">
+            <h2>Best-in-Slot Gear</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Slot</th>
+                  <th>Item / Aspect</th>
+                  <th>Why it's key</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gear.map(item => (
+                  <tr key={item.slot}>
+                    <td><strong>{item.slot}</strong></td>
+                    <td>{item.item}</td>
+                    <td>{item.impact}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <div class="card cta">
+            <h3>Subscribe for More</h3>
+            <p>Don't miss the next meta-defining ARPG build.</p>
+            <a href="#" class="btn-shadcn btn-vibe w-full">YouTube Channel</a>
+          </div>
+          
+          <div class="card stats">
+            <h3>Build Tier</h3>
+            <div class="tier-badge">S-Tier</div>
+            <div class="stat-row"><span>Difficulty</span> <span>Medium</span></div>
+            <div class="stat-row"><span>Speed</span> <span>Extreme</span></div>
+            <div class="stat-row"><span>Bossing</span> <span>High</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .build-page {
+    padding: 40px 0;
+  }
+  .breadcrumb {
+    color: var(--vibe-text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* Video Funnel */
+  .video-funnel {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .video-funnel h1 {
+    font-size: 42px;
+    color: var(--vibe-accent);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .video-container {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    border: 1px solid #3f3966;
+  }
+  .video-container iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Grid System */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--vibe-purple-light);
+    border: 1px solid #3f3966;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .card h2, .card h3 {
+    color: var(--vibe-accent);
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  /* Gear Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    text-align: left;
+    color: var(--vibe-text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #3f3966;
+  }
+  td {
+    padding: 16px 0;
+    border-bottom: 1px solid #2d2752;
+    font-size: 14px;
+  }
+
+  /* Spirit Hall */
+  .spirit-flex {
+    display: flex;
+    gap: 20px;
+  }
+  .spirit-item {
+    background: #140e30;
+    padding: 12px 20px;
+    border-radius: 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .spirit-item strong {
+    font-size: 12px;
+    color: var(--vibe-text-muted);
+  }
+
+  /* Sidebar */
+  .tier-badge {
+    background: var(--vibe-accent);
+    color: var(--vibe-purple);
+    display: inline-block;
+    padding: 4px 12px;
+    font-weight: 800;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #3f3966;
+    font-size: 14px;
+  }
+  .btn {
+    display: block;
+    background: var(--vibe-accent);
+    color: var(--vibe-purple);
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 16px;
+    transition: background 0.2s;
+  }
+  .btn:hover {
+    background: var(--vibe-accent-hover);
+  }
+
+  @media (max-width: 900px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

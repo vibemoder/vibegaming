@@ -1,0 +1,73 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { game: 'diablo-4', slug: 'patch-notes' } },
+    { params: { game: 'diablo-4', slug: 'season-updates' } },
+    { params: { game: 'diablo-4', slug: 'development-blogs' } },
+    { params: { game: 'poe', slug: 'league-announcements' } },
+    { params: { game: 'poe', slug: 'balance-changes' } },
+    { params: { game: 'poe-2', slug: 'beta-info' } },
+    { params: { game: 'poe-2', slug: 'trailer-breakdown' } },
+  ];
+}
+
+const { game, slug } = Astro.params;
+
+const displayGame = game.split('-').map(s => s.toUpperCase()).join(' ');
+const displayTitle = slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+---
+
+<Layout title={`${displayTitle} - ${displayGame} News | VibeGaming`}>
+  <Header />
+  <main class="container">
+    <article class="news-article">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> / <span>{displayGame}</span> / <span>News</span>
+      </nav>
+      <header>
+        <h1>{displayTitle}</h1>
+        <div class="meta">Posted on May 10, 2026 by VibeGaming Team</div>
+      </header>
+
+      <section class="placeholder-content">
+        <div class="article-placeholder">
+          <p>ARPG News Content [Sprint 2]</p>
+        </div>
+      </section>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .news-article {
+    padding: 40px 0;
+  }
+  .breadcrumb {
+    color: var(--vibe-text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: 40px;
+    color: var(--vibe-accent);
+    margin-bottom: 12px;
+  }
+  .meta {
+    color: var(--vibe-text-muted);
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+  .article-placeholder {
+    min-height: 400px;
+    background: var(--vibe-purple-light);
+    border-radius: 12px;
+    border: 1px solid #3f3966;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vibe-text-muted);
+  }
+</style>

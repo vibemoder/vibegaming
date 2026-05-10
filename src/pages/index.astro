@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import NewsCard from '../components/NewsCard.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
+
+const latestNews = [
+  {
+    game: 'diablo-4',
+    title: 'Spiritborn Balance Changes Coming in 2.0.3',
+    date: 'May 10, 2026',
+    excerpt: 'Blizzard discusses upcoming tweaks to the Spiritborn class and the Rod of Kepeleke loop.',
+    slug: 'patch-notes',
+  },
+  {
+    game: 'poe-2',
+    title: 'PoE 2 Closed Beta: Everything You Need to Know',
+    date: 'May 08, 2026',
+    excerpt: 'A comprehensive guide on how to gain access to the Path of Exile 2 closed beta.',
+    slug: 'beta-info',
+  },
+  {
+    game: 'diablo-4',
+    title: 'Season 6 Mid-Season Update Preview',
+    date: 'May 05, 2026',
+    excerpt: 'New endgame activities and mercenary adjustments are arriving in the next major patch.',
+    slug: 'season-updates',
+  }
+];
+---
+
+<Layout title="VibeGaming - The ARPG Hub">
+	<Header />
+	
+	<main>
+    <!-- Featured Video Section -->
+    <section class="hero-video">
+      <div class="container">
+        <div class="video-wrapper">
+          <div class="video-info">
+            <span class="trending-tag">Featured Video</span>
+            <h1>PoE 2 Warrior Gameplay Deep Dive</h1>
+            <p>Watch the latest breakdown of the Warrior class mechanics and crushing impact skills in Path of Exile 2.</p>
+            <a href="https://www.youtube.com/@VibeGaming" class="btn-shadcn btn-vibe">Subscribe for Builds</a>
+          </div>
+          <div class="video-embed">
+            <iframe 
+              src="https://www.youtube.com/embed/aFE0hiVVKBM" 
+              title="VibeGaming Featured Video" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Grid Section -->
+    <section class="news-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Latest ARPG News</h2>
+          <a href="/news" class="view-all">View All News →</a>
+        </div>
+        <div class="news-grid">
+          {latestNews.map(item => (
+            <NewsCard {...item} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Secondary CTA / Build Promo -->
+    <section class="build-promo">
+      <div class="container">
+        <div class="promo-card">
+          <div class="promo-text">
+            <h2>Looking for S-Tier Builds?</h2>
+            <p>Our expert team analyzes every patch to deliver the highest performing builds for Diablo and PoE.</p>
+          </div>
+          <div class="promo-links">
+            <a href="/diablo-4/builds/spiritborn" class="btn-shadcn btn-outline">Spiritborn Guide</a>
+            <a href="/poe-2/builds/warrior" class="btn-shadcn btn-outline">Warrior Guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+	</main>
+</Layout>
+
+<style>
+  /* Hero Video Section */
+  .hero-video {
+    background: var(--background);
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .video-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .video-info h1 {
+    font-size: 42px;
+    color: #fff;
+    margin: 12px 0 20px;
+    line-height: 1.1;
+  }
+
+  .video-info p {
+    color: var(--vibe-text-muted);
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .trending-tag {
+    color: var(--vibe-accent);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .cta-primary {
+    display: inline-block;
+    background: var(--vibe-accent);
+    color: var(--vibe-purple);
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .cta-primary:hover {
+    background: var(--vibe-accent-hover);
+  }
+
+  .video-embed {
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    border: 1px solid #3f3966;
+  }
+
+  .video-embed iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* News Section */
+  .news-section {
+    padding: 80px 0;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+  }
+
+  .section-header h2 {
+    font-size: 28px;
+    color: var(--vibe-accent);
+  }
+
+  .view-all {
+    color: var(--vibe-text-muted);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  /* Promo Section */
+  .build-promo {
+    padding-bottom: 80px;
+  }
+
+  .promo-card {
+    background: var(--vibe-purple-light);
+    border: 1px solid var(--vibe-accent);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .promo-text h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .promo-text p {
+    color: var(--vibe-text-muted);
+  }
+
+  .promo-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .btn-outline {
+    padding: 12px 24px;
+    border: 1px solid var(--vibe-accent);
+    color: var(--vibe-accent);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-outline:hover {
+    background: var(--vibe-accent);
+    color: var(--vibe-purple);
+  }
+
+  @media (max-width: 900px) {
+    .video-wrapper, .promo-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      flex-direction: column;
+    }
+    .video-info h1 {
+      font-size: 32px;
+    }
+    .promo-links {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

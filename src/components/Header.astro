@@ -1,0 +1,57 @@
+---
+import ARPGSelector from './ARPGSelector.jsx';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations(Astro.currentLocale);
+const labels = {
+  builds: t('nav.builds'),
+  news: t('nav.news')
+};
+---
+
+<header class="header">
+  <div class="container header-container">
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/icons/logo-VibeGaming-expanded-fixed.svg" alt="VibeGaming" height="32" />
+      </a>
+    </div>
+    
+    <nav class="nav">
+      <ARPGSelector client:load labels={labels} />
+    </nav>
+
+    <div class="auth">
+      <a href="/login" class="btn-shadcn btn-outline">Login</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .logo img {
+    display: block;
+  }
+
+  .nav {
+    flex: 1;
+    margin-left: 40px;
+  }
+</style>
