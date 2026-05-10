@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import Header from '../../../components/Header.astro';
+import AdUnit from '../../../components/AdUnit.astro';
 
 export function getStaticPaths() {
   return [
@@ -111,6 +112,8 @@ const displayGame = game.split('-').map(s => s.toUpperCase()).join(' ');
         </section>
 
         <aside class="sidebar">
+          <AdUnit slotId="1234567890" />
+          
           <div class="card cta">
             <h3>Subscribe for More</h3>
             <p>Don't miss the next meta-defining ARPG build.</p>

@@ -1,0 +1,14 @@
+---
+export interface Props {
+  publisherId: string;
+}
+
+const { publisherId } = Astro.props;
+---
+
+<!-- Google AdSense -->
+<script 
+  async 
+  src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`}
+  crossorigin="anonymous">
+</script>

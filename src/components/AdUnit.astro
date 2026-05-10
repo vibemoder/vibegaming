@@ -1,0 +1,49 @@
+---
+export interface Props {
+  slotId?: string;
+  format?: 'auto' | 'fluid' | 'rectangle';
+  responsive?: boolean;
+}
+
+const { slotId, format = 'auto', responsive = true } = Astro.props;
+const publisherId = "ca-pub-XXXXXXXXXXXXXXXX"; // Default placeholder
+---
+
+<div class="ad-container">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client={publisherId}
+       data-ad-slot={slotId}
+       data-ad-format={format}
+       data-full-width-responsive={responsive ? "true" : "false"}></ins>
+  <script is:inline>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<style>
+  .ad-container {
+    min-height: 100px;
+    background: var(--vibe-purple-light);
+    border: 1px dashed var(--vibe-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .ad-container::before {
+    content: 'Advertisement';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--vibe-border);
+    color: var(--vibe-text-muted);
+    font-size: 10px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+</style>
