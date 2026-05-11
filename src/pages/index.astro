@@ -43,7 +43,13 @@ const latestNews = [
             <span class="trending-tag">Featured Video</span>
             <h1>PoE 2 Warrior Gameplay Deep Dive</h1>
             <p>Watch the latest breakdown of the Warrior class mechanics and crushing impact skills in Path of Exile 2.</p>
-            <a href="https://www.youtube.com/@VibeGaming" class="btn-shadcn btn-vibe">Subscribe for Builds</a>
+            <div class="cta-group">
+              <a href="https://www.youtube.com/@VibeGaming" class="btn-shadcn btn-vibe">Subscribe for Builds</a>
+              <a href="https://www.youtube.com/@VibeGaming" class="avatar-glow-btn">
+                <img src="/assets/images/youtube-avatar.svg" alt="VibeGaming YouTube" />
+                <span>Join Channel</span>
+              </a>
+            </div>
           </div>
           <div class="video-embed">
             <iframe 
@@ -117,6 +123,46 @@ const latestNews = [
     color: var(--vibe-text-muted);
     font-size: 18px;
     margin-bottom: 30px;
+  }
+
+  .cta-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .avatar-glow-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 20px 8px 8px;
+    background: rgba(227, 179, 65, 0.1);
+    border: 1px solid var(--vibe-accent);
+    border-radius: 50px;
+    color: var(--vibe-accent);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(227, 179, 65, 0.3);
+  }
+
+  .avatar-glow-btn img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--vibe-accent);
+    box-shadow: 0 0 10px var(--vibe-accent);
+  }
+
+  .avatar-glow-btn:hover {
+    background: var(--vibe-accent);
+    color: var(--vibe-purple);
+    box-shadow: 0 0 25px var(--vibe-accent);
+    transform: scale(1.05);
+  }
+
+  .avatar-glow-btn:hover img {
+    border-color: var(--vibe-purple);
   }
 
   .trending-tag {
