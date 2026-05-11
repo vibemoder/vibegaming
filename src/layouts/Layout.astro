@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions';
 import SEO from '../components/SEO.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import GoogleAdSense from '../components/GoogleAdSense.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
 	title: string;
@@ -20,6 +21,7 @@ const currentLocale = Astro.currentLocale || 'en';
 		<SEO title={title} description={description} />
 		<GoogleAnalytics id="G-R76RH715RB" />
 		<GoogleAdSense publisherId="ca-pub-9666484845948027" />
+		<Analytics />
 		<ClientRouter />
 	</head>
 	<body>
