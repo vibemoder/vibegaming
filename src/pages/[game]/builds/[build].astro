@@ -3,6 +3,8 @@ import Layout from '../../../layouts/Layout.astro';
 import Header from '../../../components/Header.astro';
 import AdUnit from '../../../components/AdUnit.astro';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return [
     { 
